@@ -6,8 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     [SerializeField] private int _maxLives = 3;
+    private int _coins;
+
     public int Lives { get; private set; }
+    public int Coins { get; private set; }
+
     public event Action<int> OnLivesChanged;
+    public event Action<int> OnCoinsChanged;
 
     private void Awake()
     {
@@ -21,14 +26,23 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             Lives = _maxLives;
+            Coins = _coins;
         }
 
+    }
+
+    internal void AddCoin()
+    {
+        _coins++;
+        if (OnCoinsChanged != null)
+        {
+            OnCoinsChanged(_coins);
+        }
     }
 
     internal void KillPlayer()
     {
         Lives--;
-        Debug.Log(Lives);
         if (OnLivesChanged != null)
         {
             OnLivesChanged(Lives);
@@ -43,6 +57,8 @@ public class GameManager : MonoBehaviour
     private void RestartGame()
     {
         Lives = _maxLives;
+        Coins = 0;
+        OnCoinsChanged(_coins);
         SceneManager.LoadScene(0);
     }
 }
