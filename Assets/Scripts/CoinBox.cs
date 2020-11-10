@@ -17,10 +17,7 @@ public class CoinBox : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var isPlayer = collision.collider.GetComponent<PlayerMovementController>();
-        var hitPoint = collision.contacts[0].normal;
-
-        if (isPlayer && _remainingCoins > 0 && hitPoint.y > 0.5f)
+        if (collision.WasHitByPlayer() && _remainingCoins > 0 && collision.WasHitFromBottom())
         {
             GameManager.Instance.GainCoin();
             _remainingCoins--;
