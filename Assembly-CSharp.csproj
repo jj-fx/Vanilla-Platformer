@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\CheckpointManager.cs" />
     <Compile Include="Assets\Scripts\Coin.cs" />
+    <Compile Include="Assets\Scripts\CoinBox.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\IMove.cs" />
     <Compile Include="Assets\Scripts\KillOnTouch.cs" />
