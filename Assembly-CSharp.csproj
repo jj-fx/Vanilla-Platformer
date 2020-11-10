@@ -63,7 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CharacterAnimation.cs" />
     <Compile Include="Assets\Scripts\CharacterGrounding.cs" />
+    <Compile Include="Assets\Scripts\IMove.cs" />
     <Compile Include="Assets\Scripts\PlayerMovementController.cs" />
     <None Include="Assets\Art\Readme.txt" />
     <Reference Include="UnityEngine">

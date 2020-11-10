@@ -2,12 +2,13 @@
 
 [RequireComponent(typeof(CharacterGrounding))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovementController : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour, IMove
 {
     [SerializeField] private float _moveSpeed = 6.5f;
     [SerializeField] private float _jumpForce = 500;
     private Rigidbody2D _rigidbody2D;
     private CharacterGrounding _characterGrounding;
+    public float Speed { get; private set; }
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class PlayerMovementController : MonoBehaviour
     private void Update()
     {
         float _horizontal = Input.GetAxis("Horizontal");
+        Speed = _horizontal;
 
         Vector3 _movement = new Vector3(_horizontal, 0);
 
