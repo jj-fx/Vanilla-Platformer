@@ -10,8 +10,15 @@ public class UILivesText : MonoBehaviour
         _tmPro = GetComponent<TextMeshProUGUI>();
     }
 
-    private void Update()
+    private void Start()
     {
+        GameManager.Instance.OnLivesChanged += HandleOnLivesChanged;
         _tmPro.text = GameManager.Instance.Lives.ToString();
     }
+
+    private void HandleOnLivesChanged(int livesRemaining)
+    {
+        _tmPro.text = livesRemaining.ToString();
+    }
+
 }
