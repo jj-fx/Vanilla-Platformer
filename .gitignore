@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Unity Project
+Library/
+ProjectSettings/
+Temp/
+Assets/*
+!Assets/Scripts/
+
 # User-specific files
 *.rsuser
 *.suo
