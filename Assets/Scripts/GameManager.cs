@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     private void RestartGame()
     {
         Lives = _maxLives;
-        Coins = 0;
+        _coins = 0;
         OnCoinsChanged(_coins);
         SceneManager.LoadScene(0);
     }

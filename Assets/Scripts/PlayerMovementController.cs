@@ -4,11 +4,13 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovementController : MonoBehaviour, IMove
 {
+    public float Speed { get; private set; }
+
+    private bool _jump;
     [SerializeField] private float _moveSpeed = 6.5f;
     [SerializeField] private float _jumpForce = 500;
     private Rigidbody2D _rigidbody2D;
     private CharacterGrounding _characterGrounding;
-    public float Speed { get; private set; }
 
     private void Awake()
     {
@@ -18,12 +20,15 @@ public class PlayerMovementController : MonoBehaviour, IMove
 
     private void Update()
     {
-        float _horizontal = Input.GetAxis("Horizontal");
-        Speed = _horizontal;
+        var horizontal = Input.GetAxis("Horizontal");
+        Speed = horizontal;
+        var jump = Input.GetButtonDown("Jump");
 
-        Vector3 _movement = new Vector3(_horizontal, 0);
-
-        MovePlayer(_movement);
+        if (Mathf.Abs(horizontal) >= 0.01f || jump)
+        {
+            var movement = new Vector3(horizontal, 0f);
+            MovePlayer(movement);
+        }
     }
 
     private void MovePlayer(Vector3 movement)
