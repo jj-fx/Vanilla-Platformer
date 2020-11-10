@@ -22,7 +22,7 @@ public class CoinBox : MonoBehaviour
 
         if (isPlayer && _remainingCoins > 0 && hitPoint.y > 0.5f)
         {
-            GameManager.Instance.AddCoin();
+            GameManager.Instance.GainCoin();
             _remainingCoins--;
             _animator.SetTrigger("FlipCoin");
 

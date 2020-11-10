@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    internal void AddCoin()
+    internal void GainCoin()
     {
         _coins++;
         if (OnCoinsChanged != null)

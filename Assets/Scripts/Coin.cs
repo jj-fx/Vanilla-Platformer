@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour
         var isPlayer = collision.GetComponent<PlayerMovementController>();
         if (isPlayer)
         {
-            GameManager.Instance.AddCoin();
+            GameManager.Instance.GainCoin();
             Destroy(gameObject);
         }
     }
