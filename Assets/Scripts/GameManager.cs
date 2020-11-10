@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _maxLives = 3;
 
     public int Lives { get; private set; }
-    public GameManager Instance { get; private set; }
+    public static GameManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -23,8 +23,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    internal static void KillPlayer()
+    internal void KillPlayer()
     {
+        Lives--;
         SceneManager.LoadScene(0);
     }
 }
