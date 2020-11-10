@@ -21,4 +21,8 @@ public class UILivesText : MonoBehaviour
         _tmPro.text = livesRemaining.ToString();
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnLivesChanged -= HandleOnLivesChanged;
+    }
 }

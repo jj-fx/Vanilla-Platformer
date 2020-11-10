@@ -14,4 +14,9 @@ public class UIGainCoin : MonoBehaviour
     {
         _animator.SetTrigger("CoinPulse");
     }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnCoinsChanged -= CoinPulse;
+    }
 }

@@ -20,4 +20,9 @@ public class UICoinsText : MonoBehaviour
     {
         _tmPro.text = coins.ToString();
     }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnCoinsChanged -= HandleOnCoinsChanged;
+    }
 }
