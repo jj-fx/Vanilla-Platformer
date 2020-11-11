@@ -40,4 +40,10 @@ public class PlayerMovementController : MonoBehaviour, IMove
             _rigidbody2D.AddForce(Vector2.up * _jumpForce);
         }
     }
+
+/*    public void StopPlayer()
+    {
+        _rigidbody2D.velocity = Vector2.zero;
+        Speed = 0;
+    }*/
 }
