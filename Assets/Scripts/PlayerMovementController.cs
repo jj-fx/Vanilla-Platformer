@@ -37,13 +37,25 @@ public class PlayerMovementController : MonoBehaviour, IMove
 
         if (Input.GetButtonDown("Jump") && _characterGrounding.IsGrounded)
         {
-            _rigidbody2D.AddForce(Vector2.up * _jumpForce);
+/*            if (_characterGrounding.GroundedDirection != Vector3.down && _characterGrounding.GroundedDirection.HasValue)
+            {
+                _rigidbody2D.AddForce(_characterGrounding.GroundedDirection.Value * _jumpForce * -1.3f);
+            }
+            else
+            {*/
+                _rigidbody2D.AddForce(Vector2.up * _jumpForce);
+            //}
         }
     }
 
-/*    public void StopPlayer()
+    internal void Bounce()
     {
-        _rigidbody2D.velocity = Vector2.zero;
-        Speed = 0;
-    }*/
+        _rigidbody2D.AddForce(Vector2.up * _jumpForce * 0.6f);
+    }
+
+    /*    public void StopPlayer()
+        {
+            _rigidbody2D.velocity = Vector2.zero;
+            Speed = 0;
+        }*/
 }

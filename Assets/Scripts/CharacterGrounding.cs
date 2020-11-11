@@ -3,27 +3,24 @@
 public class CharacterGrounding : MonoBehaviour
 {
     [Tooltip("Use Three Feet")]
-    [SerializeField] private Transform[] _feet = new Transform[3];
-    [SerializeField] private float _maxDistance = 0.25f;
+    [SerializeField] private Transform[] _feet = new Transform[5];
+    [SerializeField] private float _maxDistance = 0.1f;
     [SerializeField] private LayerMask _layerMask;
-    private Transform[] _groundedObject = new Transform[3];
+    private Transform[] _groundedObject = new Transform[5];
 
     public bool IsGrounded { get; private set; }
-
+    public Vector3? GroundedDirection { get; private set; }
 
     private void Update()
     {
-        var leftFoot = IsFootGrounded(0);
-        var middleFoot = IsFootGrounded(1);
-        var rightFoot = IsFootGrounded(2);
+        IsGrounded = false;
 
-        if (leftFoot || middleFoot || rightFoot)
+        for (int i = 0; i < _feet.Length; i++)
         {
-            IsGrounded = true;
-        }
-        else
-        {
-            IsGrounded = false;
+            if (IsFootGrounded(i) == true)
+            {
+                IsGrounded = IsGrounded || true;
+            }
         }
 
         StickToMovingObjects();
@@ -65,20 +62,21 @@ public class CharacterGrounding : MonoBehaviour
 
     private bool IsFootGrounded(int foot)
     {
-        var _raycatHit = Physics2D.Raycast(_feet[foot].position, Vector2.down, _maxDistance, _layerMask);
+        var _raycatHit = Physics2D.Raycast(_feet[foot].position, _feet[foot].forward, _maxDistance, _layerMask);
+        Debug.DrawRay(_feet[foot].position, _feet[foot].forward, Color.red, _maxDistance);
 
         if (_raycatHit.collider != null)
         {
             var collider = _raycatHit.collider;
 
-            if (collider.GetComponent<Coin>() == null)
+            if (_groundedObject[foot] != collider.transform && 
+                collider.GetComponent<Coin>() == null && 
+                collider.GetComponent<Walker>() == null)
             {
                 _groundedObject[foot] = collider.transform;
             }
-            else
-            {
-                _groundedObject[foot] = null;
-            }
+
+            GroundedDirection = _feet[foot].forward;
 
             return true;
         }
