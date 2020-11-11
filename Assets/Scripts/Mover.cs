@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class Mover : MonoBehaviour
 {
     [SerializeField] private Transform _start;
@@ -43,28 +44,8 @@ public class Mover : MonoBehaviour
 
     private void AdjustPositionsByColliderType()
     {
-        bool circleTypeCollider = false;
-
-        if (GetComponentInChildren<CircleCollider2D>() == null)
-        {
-            circleTypeCollider = false;
-        }
-        else if (GetComponentInChildren<BoxCollider2D>() == null)
-        {
-            circleTypeCollider = true;
-        }
-
-        if (!circleTypeCollider)
-        {
-            var radius = GetComponentInChildren<BoxCollider2D>().bounds.size.x;
-            _endPosition.x -= radius * 0.5f;
-            _startPosition.x += radius * 0.5f;
-        }
-        else
-        {
-            var radius = GetComponentInChildren<CircleCollider2D>().bounds.size.x;
-            _endPosition.x -= radius * 0.5f;
-            _startPosition.x += radius * 0.5f;
-        }
+        var radius = GetComponentInChildren<Collider2D>().bounds.size.x;
+        _endPosition.x -= radius * 0.5f;
+        _startPosition.x += radius * 0.5f;
     }
 }
