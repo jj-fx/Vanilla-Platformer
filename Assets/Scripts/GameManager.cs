@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     [SerializeField] private int _maxLives = 3;
     private int _coins;
+    private int _currentLevel;
 
     public int Lives { get; private set; }
     public int Coins { get; private set; }
@@ -29,6 +30,20 @@ public class GameManager : MonoBehaviour
             Coins = _coins;
         }
 
+    }
+
+    public void GoToNextLevel()
+    {
+        _currentLevel++;
+        SceneManager.LoadScene(_currentLevel);
+    }
+
+    private void RestartGame()
+    {
+        Lives = _maxLives;
+        _coins = 0;
+        OnCoinsChanged(_coins);
+        SceneManager.LoadScene(_currentLevel);
     }
 
     internal void GainCoin()
@@ -67,13 +82,5 @@ public class GameManager : MonoBehaviour
         player.transform.position = lastCheckpoint.transform.position;
 
         //player.StopPlayer();
-    }
-
-    private void RestartGame()
-    {
-        Lives = _maxLives;
-        _coins = 0;
-        OnCoinsChanged(_coins);
-        SceneManager.LoadScene(0);
     }
 }

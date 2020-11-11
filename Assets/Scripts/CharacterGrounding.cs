@@ -3,13 +3,18 @@
 public class CharacterGrounding : MonoBehaviour
 {
     [Tooltip("Use Three Feet")]
-    [SerializeField] private Transform[] _feet = new Transform[5];
+    [SerializeField] private Transform[] _feet;
     [SerializeField] private float _maxDistance = 0.1f;
     [SerializeField] private LayerMask _layerMask;
-    private Transform[] _groundedObject = new Transform[5];
+    private Transform[] _groundedObject;
 
     public bool IsGrounded { get; private set; }
     public Vector3? GroundedDirection { get; private set; }
+
+    private void Awake()
+    {
+        _groundedObject = new Transform[_feet.Length];
+    }
 
     private void Update()
     {

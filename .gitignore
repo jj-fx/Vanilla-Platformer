@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Unity Project
+Builds/
 Library/
 ProjectSettings/
 Temp/
