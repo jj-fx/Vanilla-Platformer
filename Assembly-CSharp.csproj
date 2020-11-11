@@ -75,8 +75,8 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\IMove.cs" />
     <Compile Include="Assets\Scripts\KillOnTouch.cs" />
+    <Compile Include="Assets\Scripts\Mover.cs" />
     <Compile Include="Assets\Scripts\PlayerMovementController.cs" />
-    <Compile Include="Assets\Scripts\Saw.cs" />
     <Compile Include="Assets\Scripts\UICoinsText.cs" />
     <Compile Include="Assets\Scripts\UIGainCoin.cs" />
     <Compile Include="Assets\Scripts\UILivesText.cs" />
