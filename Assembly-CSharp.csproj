@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Audio\LifeLossAudio.cs" />
     <Compile Include="Assets\Scripts\Audio\PermanentDeathAudio.cs" />
     <Compile Include="Assets\Scripts\Audio\RunLoopAudio.cs" />
+    <Compile Include="Assets\Scripts\Background.cs" />
     <Compile Include="Assets\Scripts\Breakable.cs" />
     <Compile Include="Assets\Scripts\CharacterAnimation.cs" />
     <Compile Include="Assets\Scripts\CharacterGrounding.cs" />
