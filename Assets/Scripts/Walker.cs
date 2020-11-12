@@ -4,6 +4,7 @@ public class Walker : MonoBehaviour
 {
     [SerializeField] private float _speed = 1;
     [SerializeField] private GameObject _spawnOnDeath;
+
     private Collider2D _collider;
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _sprite;
@@ -73,7 +74,6 @@ public class Walker : MonoBehaviour
     private bool HitWall()
     {
         Vector2 point = GetRaycastPoint();
-        //point.y += _collider.bounds.size.y * 0.5f;
 
         var hit = Physics2D.Raycast(point, _direction, 0.05f);
 

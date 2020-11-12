@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     [SerializeField] private int _maxLives = 3;
+
     private int _coins;
     private int _currentLevel;
 
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour
 
         SendPlayerToCheckpoint();
     }
+
     private void SendPlayerToCheckpoint()
     {
         var player = FindObjectOfType<PlayerMovementController>();

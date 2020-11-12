@@ -6,10 +6,10 @@ public class MovingObject : MonoBehaviour
     [SerializeField] private Transform _start;
     [SerializeField] private Transform _end;
     [SerializeField] private float _speed = 4;
+
     private SpriteRenderer _sprite;
     private float _positionPercent = 0;
     private float _direction = 1;
-
     private Vector3 _startPosition;
     private Vector3 _endPosition;
 

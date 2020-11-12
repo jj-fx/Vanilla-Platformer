@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovementController))]
 public class HandlePlayerDeath : MonoBehaviour
 {
     [SerializeField] private float _delayTime;
+
     private PlayerMovementController _playerMovementController;
 
     private void Awake()

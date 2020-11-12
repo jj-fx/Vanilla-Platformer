@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CoinBox : MonoBehaviour, ITakeHits
 {
@@ -8,6 +7,7 @@ public class CoinBox : MonoBehaviour, ITakeHits
     [SerializeField] private SpriteRenderer _enabled;
     [SerializeField] private SpriteRenderer _disabled;
     [SerializeField] private int _maxCoins = 3;
+
     private int _remainingCoins;
     private Animator _animator;
     private PlatformEffector2D _platformEffector2D;

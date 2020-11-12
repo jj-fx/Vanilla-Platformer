@@ -6,6 +6,7 @@ public class CharacterGrounding : MonoBehaviour
     [SerializeField] private Transform[] _feet;
     [SerializeField] private float _maxDistance = 0.1f;
     [SerializeField] private LayerMask _layerMask;
+
     private Transform[] _groundedObject;
 
     public bool IsGrounded { get; private set; }
@@ -68,7 +69,6 @@ public class CharacterGrounding : MonoBehaviour
     private bool IsFootGrounded(int foot)
     {
         var _raycatHit = Physics2D.Raycast(_feet[foot].position, _feet[foot].forward, _maxDistance, _layerMask);
-        Debug.DrawRay(_feet[foot].position, _feet[foot].forward, Color.red, _maxDistance);
 
         if (_raycatHit.collider != null)
         {
