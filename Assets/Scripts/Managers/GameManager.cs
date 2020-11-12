@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
     {
         var player = FindObjectOfType<PlayerMovementController>();
 
+        player.transform.rotation = Quaternion.identity;
+
         player.GetComponent<SpriteRenderer>().enabled = true;
 
         var lastCheckpoint = FindObjectOfType<CheckpointManager>().GetLastCheckpoint();

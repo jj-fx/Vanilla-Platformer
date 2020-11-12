@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(CharacterGrounding))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -13,11 +14,13 @@ public class PlayerMovementController : MonoBehaviour, IMove
 
     private Rigidbody2D _rigidbody2D;
     private CharacterGrounding _characterGrounding;
+    private RunLoopAudio _runLoopAudio;
 
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _characterGrounding = GetComponent<CharacterGrounding>();
+        _runLoopAudio = GetComponentInChildren<RunLoopAudio>();
     }
 
     private void Update()
@@ -26,10 +29,24 @@ public class PlayerMovementController : MonoBehaviour, IMove
         Jumped = Input.GetButtonDown("Jump") && _characterGrounding.IsGrounded;
         VerticalVelocity = _rigidbody2D.velocity.y;
 
+        HandleRunAudio();
+
         if (Mathf.Abs(Speed) >= 0.01f || Input.GetButtonDown("Jump"))
         {
             var movement = new Vector3(Speed, 0f);
             MovePlayer(movement);
+        }
+    }
+
+    private void HandleRunAudio()
+    {
+        if (Mathf.Abs(Speed) >= 0.1f && _characterGrounding.IsGrounded)
+        {
+            _runLoopAudio.PlayAudio();
+        }
+        else
+        {
+            _runLoopAudio.StopAudio();
         }
     }
 
