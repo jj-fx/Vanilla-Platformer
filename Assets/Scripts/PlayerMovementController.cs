@@ -6,6 +6,7 @@ public class PlayerMovementController : MonoBehaviour, IMove
 {
     public float Speed { get; private set; }
     public bool Jumped { get; private set; }
+    public float VerticalVelocity { get; private set; }
 
     [SerializeField] private float _moveSpeed = 6.5f;
     [SerializeField] private float _jumpForce = 500;
@@ -21,14 +22,13 @@ public class PlayerMovementController : MonoBehaviour, IMove
 
     private void Update()
     {
-        var horizontal = Input.GetAxis("Horizontal");
-
-        Speed = horizontal;
+        Speed = Input.GetAxis("Horizontal");
         Jumped = Input.GetButtonDown("Jump") && _characterGrounding.IsGrounded;
+        VerticalVelocity = _rigidbody2D.velocity.y;
 
-        if (Mathf.Abs(horizontal) >= 0.01f || Input.GetButtonDown("Jump"))
+        if (Mathf.Abs(Speed) >= 0.01f || Input.GetButtonDown("Jump"))
         {
-            var movement = new Vector3(horizontal, 0f);
+            var movement = new Vector3(Speed, 0f);
             MovePlayer(movement);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovementController))]
 public class HandlePlayer : MonoBehaviour
 {
     [SerializeField] private float _delayTime;
