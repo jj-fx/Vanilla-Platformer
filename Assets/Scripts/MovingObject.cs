@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Mover : MonoBehaviour
+public class MovingObject : MonoBehaviour
 {
     [SerializeField] private Transform _start;
     [SerializeField] private Transform _end;
@@ -20,7 +20,7 @@ public class Mover : MonoBehaviour
         _endPosition = _end.position;
         _startPosition = _start.position;
 
-        AdjustPositionsByColliderType();
+        AdjustPositionsByStartAndEndAlignment();
     }
 
     private void Update()
@@ -42,10 +42,20 @@ public class Mover : MonoBehaviour
         }
     }
 
-    private void AdjustPositionsByColliderType()
+    private void AdjustPositionsByStartAndEndAlignment()
     {
-        var radius = GetComponentInChildren<Collider2D>().bounds.size.x;
-        _endPosition.x -= radius * 0.5f;
-        _startPosition.x += radius * 0.5f;
+        if (Mathf.Abs(_start.position.y - _end.position.y) < 0.01f)
+        {
+            var radius = GetComponentInChildren<Collider2D>().bounds.size.x;
+            _endPosition.x -= radius * 0.5f;
+            _startPosition.x += radius * 0.5f;
+        }
+        else if (Mathf.Abs(_start.position.x - _end.position.x) < 0.01f)
+        {
+            var radius = GetComponentInChildren<Collider2D>().bounds.size.y;
+            _endPosition.y -= radius * 0.5f;
+            _startPosition.y += radius * 0.5f;
+        }
+
     }
 }

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private int _currentLevel;
 
     public int Lives { get; private set; }
-    public int Coins { get; private set; }
+    public int Coins => _coins;
 
     public event Action<int> OnLivesChanged;
     public event Action<int> OnCoinsChanged;
@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             Lives = _maxLives;
-            Coins = _coins;
         }
 
     }
@@ -37,6 +36,7 @@ public class GameManager : MonoBehaviour
     public void GoToNextLevel()
     {
         _currentLevel++;
+        _coins = 0;
         SceneManager.LoadScene(_currentLevel);
     }
 
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         Lives = _maxLives;
         _coins = 0;
         OnCoinsChanged(_coins);
-        SceneManager.LoadScene(_currentLevel);
+        SceneManager.LoadScene(1);
     }
 
     internal void GainCoin()
