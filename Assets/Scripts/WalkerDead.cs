@@ -4,6 +4,7 @@ using UnityEngine;
 public class WalkerDead : MonoBehaviour
 {
     [SerializeField] private float _speed = 1f;
+    [SerializeField] private LayerMask _layer;
 
     private Collider2D _collider;
     private Rigidbody2D _rigidbody2D;
@@ -17,7 +18,7 @@ public class WalkerDead : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody2D.velocity = new Vector2(_direction.x * _speed, 0);
+        _rigidbody2D.velocity = new Vector2(_direction.x * _speed, _rigidbody2D.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -40,6 +41,17 @@ public class WalkerDead : MonoBehaviour
                 }
             }
         }
+
+        var killOnTouch = collision.collider.GetComponent<KillOnTouch>();
+
+        if (killOnTouch != null)
+        {
+            if (killOnTouch.CanKillWalkers)
+            {
+                Destroy(gameObject);
+            }
+        }
+
     }
 
     private void HandlePlayerCollision(Collision2D collision)
@@ -62,6 +74,7 @@ public class WalkerDead : MonoBehaviour
                 GameManager.Instance.KillPlayer();
             }
         }
+
     }
 
     private void LaunchDeadWalker(Collision2D collision)
