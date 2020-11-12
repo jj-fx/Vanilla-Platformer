@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     public event Action<int> OnLivesChanged;
     public event Action<int> OnCoinsChanged;
+    public event Action<int> OnDied;
 
     private void Awake()
     {
@@ -65,22 +67,56 @@ public class GameManager : MonoBehaviour
 
         if (Lives <= 0)
         {
-            RestartGame();
+            StartCoroutine(WaitToRestart(0.5f));
         } 
         else
         {
-            SendPlayerToCheckpoint();
+            StartCoroutine(WaitToDie(0.5f));
         }
     }
 
+    private IEnumerator WaitToRestart(float time)
+    {
+        BeforeDied();
+
+        yield return new WaitForSeconds(time);
+
+        RestartGame();
+    }
+
+    private IEnumerator WaitToDie(float time)
+    {
+        BeforeDied();
+
+        yield return new WaitForSeconds(time);
+
+        SendPlayerToCheckpoint();
+    }
     private void SendPlayerToCheckpoint()
     {
         var player = FindObjectOfType<PlayerMovementController>();
+
+        player.GetComponent<SpriteRenderer>().enabled = true;
 
         var lastCheckpoint = FindObjectOfType<CheckpointManager>().GetLastCheckpoint();
 
         player.transform.position = lastCheckpoint.transform.position;
 
-        player.GetComponent<HandlePlayer>().DisablePlayerForTime(0.5f);
+        player.GetComponent<HandlePlayerDeath>().DisablePlayerForTime(0.5f);
+    }
+
+    private static void BeforeDied()
+    {
+        var player = FindObjectOfType<PlayerMovementController>();
+
+        player.GetComponentInChildren<LifeLossAudio>().PlayAudio();
+
+        player.GetComponent<SpriteRenderer>().enabled = false;
+
+        player.StopPlayer();
+
+        var blood = player.GetComponentInChildren<ParticleSystem>();
+
+        blood.Play();
     }
 }

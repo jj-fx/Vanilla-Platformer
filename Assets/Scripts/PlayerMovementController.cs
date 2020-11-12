@@ -47,4 +47,9 @@ public class PlayerMovementController : MonoBehaviour, IMove
     {
         _rigidbody2D.AddForce(Vector2.up * _jumpForce * 0.6f);
     }
+
+    public void StopPlayer()
+    {
+        Speed = 0;
+    }
 }

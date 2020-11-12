@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovementController))]
-public class HandlePlayer : MonoBehaviour
+public class HandlePlayerDeath : MonoBehaviour
 {
     [SerializeField] private float _delayTime;
     private PlayerMovementController _playerMovementController;
