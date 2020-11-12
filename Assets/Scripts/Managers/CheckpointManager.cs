@@ -1,11 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
 {
     private Checkpoint[] _checkpoints;
-
 
     private void Start()
     {

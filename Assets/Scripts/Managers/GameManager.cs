@@ -81,6 +81,6 @@ public class GameManager : MonoBehaviour
 
         player.transform.position = lastCheckpoint.transform.position;
 
-        //player.StopPlayer();
+        player.GetComponent<HandlePlayer>().DisablePlayerForTime(0.5f);
     }
 }

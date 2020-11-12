@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\CoinAudio.cs" />
     <Compile Include="Assets\Scripts\CoinBox.cs" />
     <Compile Include="Assets\Scripts\Collision2DExtensions.cs" />
+    <Compile Include="Assets\Scripts\HandlePlayer.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IMove.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITakeHits.cs" />
     <Compile Include="Assets\Scripts\JumpAudio.cs" />
